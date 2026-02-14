@@ -1,0 +1,125 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-kid-friendly-home-screen-for-a-new-children-s-learning-game-that-lets-the-player-choose-a-learning-category-at-minimum-letters-numbers-colors-and-start-a-game-session",
+      "featureTitle": "Create a kid-friendly home screen for a new children's learning game that lets the player choose a learning category (at minimum: Letters, Numbers, Colors) and start a game session.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/HomeScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-core-learning-game-loop-show-one-question-at-a-time-with-3-4-large-multiple-choice-answers-provide-immediate-feedback-correct-incorrect-and-advance-through-a-short-round-e-g-10-questions-with-an-end-of-round-summary",
+      "featureTitle": "Implement the core learning game loop: show one question at a time with 3–4 large multiple-choice answers, provide immediate feedback (correct/incorrect), and advance through a short round (e.g., 10 questions) with an end-of-round summary.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/game/gameTypes.ts",
+        "frontend/src/game/useGameSession.ts",
+        "frontend/src/pages/GameScreen.tsx",
+        "frontend/src/pages/RoundSummaryScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-a-built-in-question-bank-for-the-minimum-categories-letters-numbers-colors-with-age-appropriate-prompts-and-answers-and-ensure-the-game-can-randomly-select-questions-without-repeats-within-a-round-when-possible",
+      "featureTitle": "Provide a built-in question bank for the minimum categories (Letters, Numbers, Colors) with age-appropriate prompts and answers, and ensure the game can randomly select questions without repeats within a round when possible.",
+      "files": [
+        "frontend/src/game/questionBank.ts",
+        "frontend/src/game/questionSelection.ts",
+        "frontend/src/pages/GameScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-progress-tracking-so-a-player-s-best-score-and-total-rounds-played-are-saved-per-category-and-can-be-displayed-on-the-home-screen-or-a-simple-progress-view-persist-progress-on-the-backend-keyed-by-the-user-principal-when-available",
+      "featureTitle": "Add progress tracking so a player’s best score and total rounds played are saved per category and can be displayed on the home screen (or a simple 'Progress' view). Persist progress on the backend keyed by the user principal when available.",
+      "files": [
+        "frontend/src/pages/HomeScreen.tsx",
+        "frontend/src/pages/RoundSummaryScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-cohesive-playful-visual-theme-appropriate-for-young-children-warm-bright-palette-rounded-shapes-large-typography-clear-spacing-and-enforce-it-consistently-across-all-screens-without-using-a-blue-purple-primary-palette",
+      "featureTitle": "Apply a cohesive, playful visual theme appropriate for young children (warm, bright palette; rounded shapes; large typography; clear spacing) and enforce it consistently across all screens without using a blue/purple primary palette.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/GameScreen.tsx",
+        "frontend/src/pages/HomeScreen.tsx",
+        "frontend/src/pages/RoundSummaryScreen.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-required-generated-static-images-mascot-background-category-icons-to-the-frontend-and-render-them-from-the-static-assets-directory-frontend-public-assets-generated-in-the-ui",
+      "featureTitle": "Add required generated static images (mascot, background, category icons) to the frontend and render them from the static assets directory (frontend/public/assets/generated) in the UI.",
+      "files": [
+        "frontend/src/pages/HomeScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

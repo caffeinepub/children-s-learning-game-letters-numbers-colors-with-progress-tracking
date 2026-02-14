@@ -1,0 +1,13 @@
+{
+  "frontend/src/index.css": "Global styles with warm, playful OKLCH color system (orange primary, peach secondary, mint accent) and custom animations for children's game aesthetic.",
+  "frontend/tailwind.config.js": "Tailwind configuration with Comic Sans font family, extended border radius values, playful shadow utilities, and custom animations (bounce-in, wiggle).",
+  "frontend/src/App.tsx": "Main application component managing view state (home/game/summary) and navigation flow between screens with game state management.",
+  "frontend/src/game/gameTypes.ts": "Type definitions and constants for game logic including round length (10), answer constraints, question structure, and feedback states.",
+  "frontend/src/game/questionBank.ts": "Built-in question bank with 12+ age-appropriate questions per category (Letters, Numbers, Colors) as fallback when backend unavailable.",
+  "frontend/src/game/questionSelection.ts": "Utility function to randomly select questions for a round without repeats, with fallback to repeat questions if insufficient unique questions exist.",
+  "frontend/src/game/useGameSession.ts": "React hook managing game session state including current question, score tracking, feedback timing, and automatic progression through questions.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend integration including progress fetching, progress updates, and category-based question retrieval.",
+  "frontend/src/pages/HomeScreen.tsx": "Home screen with category selection cards, progress display for logged-in users, mascot and background images, and sign-in functionality.",
+  "frontend/src/pages/GameScreen.tsx": "Game screen displaying one question at a time with large answer buttons, immediate visual feedback, progress bar, and animated mascot encouragement.",
+  "frontend/src/pages/RoundSummaryScreen.tsx": "Round summary screen showing score, star rating, encouragement message, and action buttons to replay or return home with progress persistence."
+}

@@ -1,0 +1,197 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Children's learning game (letters, numbers, colors) with progress tracking",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement a kid-friendly home screen that is the default view and lets the player choose Letters/Numbers/Colors and start a session.",
+      "acceptanceCriteria": [
+        "Home screen is the default view on load",
+        "Player can select one of the available categories (Letters, Numbers, Colors)",
+        "A clear 'Start' action begins the game session for the selected category",
+        "All user-facing text is in English"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomeScreen.tsx",
+          "operation": "create",
+          "description": "Create the Home screen UI with category selection (Letters/Numbers/Colors), a clear Start action, and space to display progress stats. Use shadcn-ui components (compose-only; do not modify frontend/src/components/ui) to provide accessible, large, tappable cards/buttons; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire HomeScreen as the default view on load and add minimal in-app navigation/state to start a game session for the selected category and transition to the game view."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement the core game loop: one question at a time, 3–4 large multiple-choice answers, immediate feedback, 10-question rounds, and an end-of-round summary with a reward indicator.",
+      "acceptanceCriteria": [
+        "Each question screen shows exactly one prompt and 3–4 selectable answers",
+        "Selecting an answer shows immediate feedback and then advances to the next question",
+        "A round contains a fixed number of questions (minimum 10)",
+        "End-of-round screen shows total correct answers and a simple reward indicator (e.g., stars earned)",
+        "UI elements are large and easy to tap/click"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/game/gameTypes.ts",
+          "operation": "create",
+          "description": "Add shared frontend types/constants for the game loop (round length = 10, answer count constraints, and view-state modeling) to keep game logic consistent across screens."
+        },
+        {
+          "path": "frontend/src/game/useGameSession.ts",
+          "operation": "create",
+          "description": "Create a React hook to manage the 2D game session state: current question index, selected answer, immediate feedback timing, score tracking, and advancing through a 10-question round."
+        },
+        {
+          "path": "frontend/src/pages/GameScreen.tsx",
+          "operation": "create",
+          "description": "Implement the question UI: one prompt and 3–4 very large answer buttons, immediate correct/incorrect feedback, and automatic progression. Use shadcn-ui components (compose-only; do not modify frontend/src/components/ui) to provide large buttons/cards and consistent spacing; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/RoundSummaryScreen.tsx",
+          "operation": "create",
+          "description": "Create an end-of-round summary screen showing total correct answers and a simple reward indicator (e.g., stars earned), plus actions to replay or return home. Use shadcn-ui components (compose-only; do not modify frontend/src/components/ui); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire GameScreen and RoundSummaryScreen into the app's view flow (Home -> Game -> Summary -> Home/Replay), ensuring navigation is not orphaned."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Provide a question bank for Letters/Numbers/Colors and randomize selection per round with no repeats when possible.",
+      "acceptanceCriteria": [
+        "Question bank exists for Letters, Numbers, and Colors with enough questions to support at least one 10-question round per category",
+        "Questions are randomly selected for each round",
+        "The same question is not repeated within the same round unless the category has fewer available questions than the round length"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/game/questionBank.ts",
+          "operation": "create",
+          "description": "Add a built-in frontend question bank for Letters, Numbers, and Colors with age-appropriate prompts/answers to guarantee playable rounds even if backend data is unavailable."
+        },
+        {
+          "path": "frontend/src/game/questionSelection.ts",
+          "operation": "create",
+          "description": "Implement question selection utilities to randomly select questions for a round and avoid repeats within a round when possible (fallback to repeats only when insufficient unique questions exist)."
+        },
+        {
+          "path": "frontend/src/pages/GameScreen.tsx",
+          "operation": "modify",
+          "description": "Load questions for the chosen category by calling the backend actor capability getQuestionsByCategory when available via the existing useActor hook, with a fallback to the built-in frontend question bank; then use the selection utilities to build a 10-question round."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Track and display progress (best score, total rounds played) per category; persist for signed-in principals and keep the game functional when not signed in.",
+      "acceptanceCriteria": [
+        "After completing a round, the app updates progress for the selected category (best score, rounds played)",
+        "Progress persists across page reloads for the same signed-in principal",
+        "Home (or Progress view) displays best score and rounds played per category",
+        "If the user is not signed in, the app still functions (progress display may be hidden or treated as temporary)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/game/useProgress.ts",
+          "operation": "create",
+          "description": "Create a small progress hook that uses the existing useActor + react-query to (a) fetch progress via getProgress and (b) update progress via updateProgress after a round completes; ensure the UI gracefully handles anonymous sessions (hide or treat progress as temporary)."
+        },
+        {
+          "path": "frontend/src/pages/HomeScreen.tsx",
+          "operation": "modify",
+          "description": "Display progress per category (best score, rounds played) on the home screen when available, and keep the category selection/start flow working when progress is unavailable."
+        },
+        {
+          "path": "frontend/src/pages/RoundSummaryScreen.tsx",
+          "operation": "modify",
+          "description": "After the round ends, trigger a progress update for the selected category using the backend actor capability updateProgress, then reflect updated best score/rounds played where shown."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a cohesive playful theme (warm, bright palette; rounded shapes; large typography; clear spacing) consistently across screens, avoiding a blue/purple primary palette.",
+      "acceptanceCriteria": [
+        "All screens share a consistent theme (colors, typography, components) suitable for children",
+        "Primary UI components (buttons/cards) use rounded corners and high-contrast text",
+        "No blue/purple primary palette is used for the main theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add/define global theme tokens and base styles (typography scale, spacing, rounded corners) using a warm bright palette as primary (no blue/purple primary). Ensure styles apply consistently across Home/Game/Summary."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extension (as needed) to support the playful child-friendly design (e.g., rounded defaults, warm accent colors via CSS variables) while keeping the primary palette non-blue/purple."
+        },
+        {
+          "path": "frontend/src/pages/HomeScreen.tsx",
+          "operation": "modify",
+          "description": "Apply consistent large typography, rounded shapes, and clear spacing via Tailwind classes and composed shadcn-ui components (do not modify frontend/src/components/ui); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/GameScreen.tsx",
+          "operation": "modify",
+          "description": "Apply the same theme and ensure all interactive elements remain large and high-contrast using composed shadcn-ui components (do not modify frontend/src/components/ui); verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/RoundSummaryScreen.tsx",
+          "operation": "modify",
+          "description": "Apply the same theme to the summary/reward UI using composed shadcn-ui components (do not modify frontend/src/components/ui); verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add required generated static images (mascot, background, category icons) under frontend/public/assets/generated and render them in the UI.",
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated",
+        "Home screen shows the mascot and background image",
+        "Each category (Letters, Numbers, Colors) displays its icon in the UI"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/mascot-bear.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated mascot image asset at the exact path frontend/public/assets/generated/mascot-bear.dim_512x512.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/bg-playroom.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated background image asset at the exact path frontend/public/assets/generated/bg-playroom.dim_1920x1080.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-letters.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated Letters icon asset at the exact path frontend/public/assets/generated/icon-letters.dim_256x256.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-numbers.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated Numbers icon asset at the exact path frontend/public/assets/generated/icon-numbers.dim_256x256.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-colors.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated Colors icon asset at the exact path frontend/public/assets/generated/icon-colors.dim_256x256.png."
+        },
+        {
+          "path": "frontend/src/pages/HomeScreen.tsx",
+          "operation": "modify",
+          "description": "Render the static assets from frontend/public/assets/generated: use frontend/public/assets/generated/bg-playroom.dim_1920x1080.png as the home background, show frontend/public/assets/generated/mascot-bear.dim_512x512.png on the home screen, and show category icons frontend/public/assets/generated/icon-letters.dim_256x256.png, frontend/public/assets/generated/icon-numbers.dim_256x256.png, frontend/public/assets/generated/icon-colors.dim_256x256.png alongside each category option."
+        }
+      ]
+    }
+  ]
+}

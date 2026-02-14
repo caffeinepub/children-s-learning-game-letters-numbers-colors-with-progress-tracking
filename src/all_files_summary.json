@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Motoko backend storing questions and per-user progress with update and query methods.",
+  "feature_evidence.json": "Feature evidence report mapping features to related frontend files and components.",
+  "frontend-file-summaries.txt": "Prewritten summaries of core frontend files for quick reference.",
+  "frontend/index.css": "Global Tailwind-based theme variables and dark mode styles.",
+  "frontend/index.html": "Base HTML entry point loading the React app.",
+  "frontend/src/App.tsx": "Main React app managing navigation between home, game, and summary screens.",
+  "frontend/src/game/gameTypes.ts": "Shared game constants and TypeScript types for questions and feedback.",
+  "frontend/src/game/questionBank.ts": "Fallback built‑in question bank for letters, numbers, and colors.",
+  "frontend/src/game/questionSelection.ts": "Utility to shuffle and select a set of questions for each game round.",
+  "frontend/src/game/useGameSession.ts": "Hook controlling game progression, scoring, and feedback timing.",
+  "frontend/src/hooks/useActor.ts": "React hook creating and managing authenticated or anonymous backend actors.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and provider for Internet Identity authentication, handling login, logout, and identity loading. Wraps AuthClient creation and exposes login state helpers.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching and updating user progress and questions from the backend. Uses an actor to call canister methods and manages cache invalidation.",
+  "frontend/src/index.css": "Tailwind CSS setup defining color variables, light/dark themes, and global styles. Applies a playful font and utility classes.",
+  "frontend/src/main.tsx": "App entry point setting up React, React Query, and the Internet Identity provider, then rendering the root component.",
+  "frontend/src/pages/GameScreen.tsx": "Game flow screen that loads questions, manages question progression, handles answers, and displays progress and feedback. Falls back to local question bank when backend data is unavailable.",
+  "frontend/src/pages/HomeScreen.tsx": "Home screen displaying category choices, user progress, and login/logout controls via Internet Identity. Lets users start a new game by selecting a category.",
+  "frontend/src/pages/RoundSummaryScreen.tsx": "Summary screen showing round results, stars, encouragement, and actions to replay or return home. Updates backend progress if the user is logged in.",
+  "frontend/tailwind.config.js": "Configures Tailwind theme with custom fonts, OKLCH color tokens, extended border radii, shadows, keyframes, and includes typography, container query, and animation plugins.",
+  "project_state.json": "Stores project state for a children’s learning game, including features, requirements, issues, and image asset specifications."
+}

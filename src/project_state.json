@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a new children's learning game.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Friendly cartoon mascot (smiling bear) on transparent background (mascot-bear.dim_512x512.png)\n- Soft playful background with warm pastel shapes (no text) (bg-playroom.dim_1920x1080.png)\n- Flat rounded icon for Letters category (icon-letters.dim_256x256.png)\n- Flat rounded icon for Numbers category (icon-numbers.dim_256x256.png)\n- Flat rounded icon for Colors category (icon-colors.dim_256x256.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-kid-friendly-home-screen-for-a-new-children-s-learning-game-that-lets-the-player-choose-a-learning-category-at-minimum-letters-numbers-colors-and-start-a-game-session",
+      "title": "Create a kid-friendly home screen for a new children's learning game that lets the player choose a learning category (at minimum: Letters, Numbers, Colors) and start a game session.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-core-learning-game-loop-show-one-question-at-a-time-with-3-4-large-multiple-choice-answers-provide-immediate-feedback-correct-incorrect-and-advance-through-a-short-round-e-g-10-questions-with-an-end-of-round-summary",
+      "title": "Implement the core learning game loop: show one question at a time with 3–4 large multiple-choice answers, provide immediate feedback (correct/incorrect), and advance through a short round (e.g., 10 questions) with an end-of-round summary.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-built-in-question-bank-for-the-minimum-categories-letters-numbers-colors-with-age-appropriate-prompts-and-answers-and-ensure-the-game-can-randomly-select-questions-without-repeats-within-a-round-when-possible",
+      "title": "Provide a built-in question bank for the minimum categories (Letters, Numbers, Colors) with age-appropriate prompts and answers, and ensure the game can randomly select questions without repeats within a round when possible.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-progress-tracking-so-a-player-s-best-score-and-total-rounds-played-are-saved-per-category-and-can-be-displayed-on-the-home-screen-or-a-simple-progress-view-persist-progress-on-the-backend-keyed-by-the-user-principal-when-available",
+      "title": "Add progress tracking so a player’s best score and total rounds played are saved per category and can be displayed on the home screen (or a simple 'Progress' view). Persist progress on the backend keyed by the user principal when available.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-playful-visual-theme-appropriate-for-young-children-warm-bright-palette-rounded-shapes-large-typography-clear-spacing-and-enforce-it-consistently-across-all-screens-without-using-a-blue-purple-primary-palette",
+      "title": "Apply a cohesive, playful visual theme appropriate for young children (warm, bright palette; rounded shapes; large typography; clear spacing) and enforce it consistently across all screens without using a blue/purple primary palette.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-generated-static-images-mascot-background-category-icons-to-the-frontend-and-render-them-from-the-static-assets-directory-frontend-public-assets-generated-in-the-ui",
+      "title": "Add required generated static images (mascot, background, category icons) to the frontend and render them from the static assets directory (frontend/public/assets/generated) in the UI.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a new learning game for children",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Children's learning game (letters, numbers, colors) with progress tracking",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

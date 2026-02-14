@@ -1,0 +1,67 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T12:27:03.580Z",
+  "summary": "Core navigation (home/game/summary), game loop, random question selection, and a playful theme are implemented. However, per-category backend progress tracking is not implemented, backend question bank is insufficient for 10-question rounds, and the required generated image assets are not present in the diff.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Backend question bank for Letters, Numbers, and Colors must have enough questions to support at least one 10-question round per category, with age-appropriate prompts and 3–4 answer choices.",
+      "reason": "The backend question map contains only 3 total questions (one per category), which cannot support a 10-question round per category. Also, backend questions only include 1–2 acceptable answers rather than 3–4 multiple-choice options.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Persist progress per category (best score and total rounds played) on the backend keyed by principal and display it per category on the home/progress view.",
+      "reason": "Backend stores a single Progress record per Principal (not per category). Although updateProgress accepts a category argument, it is not used to track separate progress per category. The HomeScreen displays only one overall best score and rounds played, not per category.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/pages/HomeScreen.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Add the required generated static images under frontend/public/assets/generated and render them in the UI (mascot, background, and category icons).",
+      "reason": "UI references image paths under /assets/generated, but the diff does not include the actual image files under frontend/public/assets/generated.",
+      "evidence": [
+        "frontend/src/pages/HomeScreen.tsx",
+        "frontend/src/pages/RoundSummaryScreen.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Emoji-based encouragement messages on the round summary screen (e.g., 🎉, ⭐, 👍, 💪).",
+      "reason": "Not requested in the BuildRequest; additionally these are user-facing characters beyond plain English text.",
+      "evidence": [
+        "frontend/src/pages/RoundSummaryScreen.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/game/gameTypes.ts",
+    "frontend/src/game/questionBank.ts",
+    "frontend/src/game/questionSelection.ts",
+    "frontend/src/game/useGameSession.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/GameScreen.tsx",
+    "frontend/src/pages/HomeScreen.tsx",
+    "frontend/src/pages/RoundSummaryScreen.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
